@@ -29,49 +29,49 @@ def FindFunc(addr):
 
 
 
-#jly = FindFunc("./bn.h")
-#for i in jly:
-#    print(i)
-#    print()
+jly = FindFunc("./bn.h")
+for i in jly:
+   print(i)
+   print()
 
 
-def FindSpan(func_name, file_str):
-
-    print("func_name =",func_name)
-    print("file_str =",file_str)
-    pattern1 = re.compile(func_name)
-    res1 = re.search(pattern1, file_str)
-
-    if res1 != None:
-        start_pos = res1.span()[1]
-        end_pos = start_pos
-        brace_count = 1
-        while True:
-            if file_str[end_pos]=='{':
-                end_pos+=1
-                break
-            start_pos+=1
-
-        while True:
-            if file_str[end_pos]=="{":
-                brace_count+=1
-            elif file_str[end_pos]=="}":
-                brace_count-=1
-
-            if brace_count==0:
-                break
-
-        return (start_pos, end_pos)
-    else:
-        return (-1,-1)
-
-
-str1 = """int fun(int a, int b);"""
-str2 = """int fun(int a, int b){
-            int c = a+b;
-            return c;
-            }"""
-
-a = FindSpan(str1[:len(str1)-1],str2)
-
-print(a)
+# def FindSpan(func_name, file_str):
+#
+#     print("func_name =",func_name)
+#     print("file_str =",file_str)
+#     pattern1 = re.compile(func_name)
+#     res1 = re.search(pattern1, file_str)
+#
+#     if res1 != None:
+#         start_pos = res1.span()[1]
+#         end_pos = start_pos
+#         brace_count = 1
+#         while True:
+#             if file_str[end_pos]=='{':
+#                 end_pos+=1
+#                 break
+#             start_pos+=1
+#
+#         while True:
+#             if file_str[end_pos]=="{":
+#                 brace_count+=1
+#             elif file_str[end_pos]=="}":
+#                 brace_count-=1
+#
+#             if brace_count==0:
+#                 break
+#
+#         return (start_pos, end_pos)
+#     else:
+#         return (-1,-1)
+#
+#
+# str1 = """int fun(int a, int b);"""
+# str2 = """int fun(int a, int b){
+#             int c = a+b;
+#             return c;
+#             }"""
+#
+# a = FindSpan(str1[:len(str1)-1],str2)
+#
+# print(a)
